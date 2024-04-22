@@ -11,13 +11,13 @@ type MenuIds = "first" | "second" | "last";
 type Menu = { id: MenuIds; title: string };
 
 interface MenuSelected {
-  selectedMenu: Menu | null;
+  selectedMenu: Menu;
 }
 
-type SelectedMenu = Menu | null;
+type SelectedMenu = Menu;
 
 const MenuSelectedContext = createContext<MenuSelected>({
-  selectedMenu: null,
+  selectedMenu: {} as SelectedMenu,
 });
 
 interface MenuAction {
@@ -31,7 +31,7 @@ const MenuActionContext = createContext<MenuAction>({
 type PropsProvider = PropsWithChildren;
 
 function MenuProvider({ children }: PropsProvider) {
-  const [selectedMenu, setSelectedMenu] = useState<SelectedMenu>(null);
+  const [selectedMenu, setSelectedMenu] = useState({} as SelectedMenu);
 
   const menuContextAction = useMemo(
     () => ({

@@ -1,12 +1,20 @@
 import { useReducer } from "react";
 
+type RequestStep = "idle" | "start" | "pending" | "finished";
+
 interface State {
   isRequestInProgress: boolean;
-  requestStep: "idle" | "start" | "pending" | "finished";
+  requestStep: RequestStep;
 }
 
+type ActionType =
+  | "START_REQUEST"
+  | "PENDING_REQUEST"
+  | "FINISH_REQUEST"
+  | "RESET_REQUEST";
+
 interface Action {
-  type: string;
+  type: ActionType;
   payload?: unknown;
 }
 
